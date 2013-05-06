@@ -1,6 +1,6 @@
 namespace Tossd.Jalapeno.Model
 {
-    public class PropertyInfo
+    public class ControlPropertyInfo
     {
         /// <summary>
         /// The locator name used to identify the control

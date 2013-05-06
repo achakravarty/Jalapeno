@@ -33,7 +33,7 @@ namespace Tossd.Jalapeno.Model
         /// <summary>
         /// The properties associated with the control
         /// </summary>
-        public PropertyInfo PropertyInfo { get; set; }
+        public ControlPropertyInfo PropertyInfo { get; set; }
 
         /// <summary>
         /// The parent control for the specified control

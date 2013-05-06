@@ -20,6 +20,8 @@ namespace Tossd.Jalapeno.Controls
             protected set;
         }
 
+        private ControlConfigurator _controlConfigurator;
+
         /// <summary>
         /// This method will create a control map from the locators specified in the control map dictionary with respect to the current browser window
         /// </summary>
@@ -27,8 +29,8 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="controlMapDictionary">A dictionary of the control locator names to the control locators</param>
         /// <returns>A control map of the locator names and the actual controls</returns>
         /// <exception cref="ArgumentNullException">Thrown when the control map dictionary is null</exception>
-        /// /// <exception cref="ArgumentNullException">Thrown when the current browser window is null</exception>
-        public virtual ControlMap MapControls(BrowserWindow currentBrowserWindow, StringDictionary controlMapDictionary)
+        /// <exception cref="ArgumentNullException">Thrown when the current browser window is null</exception>
+        public ControlMap MapControls(BrowserWindow currentBrowserWindow, StringDictionary controlMapDictionary)
         {
             if (controlMapDictionary == null)
             {
@@ -38,20 +40,32 @@ namespace Tossd.Jalapeno.Controls
             {
                 throw new ArgumentNullException("currentBrowserWindow", "Current Browser window cannot be null");
             }
+
             //Update the current browser window
             CurrentBrowserWindow = currentBrowserWindow;
 
             //Instantiate the a new object of the control configurator with the current browser window
-            var controlConfigurator = new ControlConfigurator(currentBrowserWindow);
-            
+            _controlConfigurator = new ControlConfigurator(currentBrowserWindow);
+
+            return PopulateControlMap(controlMapDictionary);
+        }
+
+        /// <summary>
+        /// Method to populate the control map
+        /// </summary>
+        /// <param name="controlMapDictionary">A dictionary of the control locator names to the control locators</param>
+        /// <returns>A control map of the locator names and the actual controls</returns>
+        protected virtual ControlMap PopulateControlMap(StringDictionary controlMapDictionary)
+        {
             //Instantiate a new control map with a new dictionary
             var controlMap = new Dictionary<string, Control>(StringComparer.InvariantCultureIgnoreCase);
 
             //Populate the control map
             foreach (string key in controlMapDictionary.Keys)
             {
-                controlMap.Add(key, controlConfigurator.BuildControl(controlMapDictionary[key], null));
+                controlMap.Add(key, _controlConfigurator.BuildControl(controlMapDictionary[key], new Control { UITestControl = CurrentBrowserWindow }));
             }
+
             //Return a control map object
             return new ControlMap(controlMap);
         }
