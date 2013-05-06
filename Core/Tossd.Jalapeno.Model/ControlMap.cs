@@ -8,9 +8,18 @@ namespace Tossd.Jalapeno.Model
     public class ControlMap
     {
         /// <summary>
+        /// Parametrized constructor to initialize the Control Map
+        /// </summary>
+        /// <param name="controlDictionary">The control dictionary that will be the internal mapping of the control map</param>
+        public ControlMap(Dictionary<string, Control> controlDictionary)
+        {
+            _controlDictionary = controlDictionary;
+        }
+
+        /// <summary>
         /// A Mapping of the UI controls by their locators
         /// </summary>
-        public Dictionary<string, Control> ControlDictionary { get; set; }
+        private readonly Dictionary<string, Control> _controlDictionary;
 
         /// <summary>
         /// An indexer for the Control Map
@@ -26,11 +35,11 @@ namespace Tossd.Jalapeno.Model
                 {
                     throw new ArgumentNullException("locatorName");    
                 }
-                if(!ControlDictionary.ContainsKey(locatorName))
+                if (!_controlDictionary.ContainsKey(locatorName))
                 {
                     throw new KeyNotFoundException("No Control is present for the given locator name : " + locatorName);
                 }
-                return ControlDictionary[locatorName.ToLowerInvariant()];
+                return _controlDictionary[locatorName.ToLowerInvariant()];
                 
             }
             set
@@ -43,7 +52,7 @@ namespace Tossd.Jalapeno.Model
                 {
                     throw new ArgumentNullException("value", "Cannot assign null Control to Control Map");
                 }
-                ControlDictionary[locatorName.ToLowerInvariant()] = value;
+                _controlDictionary[locatorName.ToLowerInvariant()] = value;
             }
         }
     }
