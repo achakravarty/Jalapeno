@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. References", "1. References", "{6AA6C2CC-056F-4EA0-AF38-9958D613BB64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Core", "2. Core", "{DD15A078-E574-416F-A315-08FE9DF1F82B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Data", "3. Data", "{886B5015-D78C-44CB-8CD5-0577E7540F08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Controls", "4. Controls", "{C3D7655C-B35F-4C74-9BB0-2B4FA72827A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Common", "6. Common", "{FF9EFD02-4804-494E-9D12-D1AF3030ECFD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Model", "5. Model", "{4AD996E1-C1BA-4829-9450-495640A1F70D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Core", "Tossd.Jalapeno.Core\Tossd.Jalapeno.Core.csproj", "{753246AE-09A1-49FF-B13C-25CA826C6CE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Data.Interfaces", "Tossd.Jalapeno.Data.Interfaces\Tossd.Jalapeno.Data.Interfaces.csproj", "{F4BA44DB-08CD-4BA9-BA79-701223F0766C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Data", "Tossd.Jalapeno.Data\Tossd.Jalapeno.Data.csproj", "{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Controls.Interfaces", "Tossd.Jalapeno.Controls.Interfaces\Tossd.Jalapeno.Controls.Interfaces.csproj", "{CCC782C0-54AC-44F5-B4CD-68284EA50B16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Controls", "Tossd.Jalapeno.Controls\Tossd.Jalapeno.Controls.csproj", "{F9BE473F-29C6-497F-AF09-E30751E63662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Model", "Tossd.Jalapeno.Model\Tossd.Jalapeno.Model.csproj", "{FD007150-E50C-4123-8DB0-7DC68FDF5282}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tossd.Jalapeno.Common", "Tossd.Jalapeno.Common\Tossd.Jalapeno.Common.csproj", "{318AD1E0-9841-49F7-9D07-0E76A7ECE642}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{753246AE-09A1-49FF-B13C-25CA826C6CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{753246AE-09A1-49FF-B13C-25CA826C6CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{753246AE-09A1-49FF-B13C-25CA826C6CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{753246AE-09A1-49FF-B13C-25CA826C6CE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4BA44DB-08CD-4BA9-BA79-701223F0766C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4BA44DB-08CD-4BA9-BA79-701223F0766C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4BA44DB-08CD-4BA9-BA79-701223F0766C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4BA44DB-08CD-4BA9-BA79-701223F0766C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCC782C0-54AC-44F5-B4CD-68284EA50B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC782C0-54AC-44F5-B4CD-68284EA50B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC782C0-54AC-44F5-B4CD-68284EA50B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC782C0-54AC-44F5-B4CD-68284EA50B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BE473F-29C6-497F-AF09-E30751E63662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BE473F-29C6-497F-AF09-E30751E63662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BE473F-29C6-497F-AF09-E30751E63662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BE473F-29C6-497F-AF09-E30751E63662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD007150-E50C-4123-8DB0-7DC68FDF5282}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD007150-E50C-4123-8DB0-7DC68FDF5282}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD007150-E50C-4123-8DB0-7DC68FDF5282}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD007150-E50C-4123-8DB0-7DC68FDF5282}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318AD1E0-9841-49F7-9D07-0E76A7ECE642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318AD1E0-9841-49F7-9D07-0E76A7ECE642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318AD1E0-9841-49F7-9D07-0E76A7ECE642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318AD1E0-9841-49F7-9D07-0E76A7ECE642}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{753246AE-09A1-49FF-B13C-25CA826C6CE4} = {DD15A078-E574-416F-A315-08FE9DF1F82B}
+		{F4BA44DB-08CD-4BA9-BA79-701223F0766C} = {886B5015-D78C-44CB-8CD5-0577E7540F08}
+		{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68} = {886B5015-D78C-44CB-8CD5-0577E7540F08}
+		{CCC782C0-54AC-44F5-B4CD-68284EA50B16} = {C3D7655C-B35F-4C74-9BB0-2B4FA72827A6}
+		{F9BE473F-29C6-497F-AF09-E30751E63662} = {C3D7655C-B35F-4C74-9BB0-2B4FA72827A6}
+		{318AD1E0-9841-49F7-9D07-0E76A7ECE642} = {FF9EFD02-4804-494E-9D12-D1AF3030ECFD}
+		{FD007150-E50C-4123-8DB0-7DC68FDF5282} = {4AD996E1-C1BA-4829-9450-495640A1F70D}
+	EndGlobalSection
+EndGlobal
