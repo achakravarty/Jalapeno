@@ -20,8 +20,6 @@ namespace Tossd.Jalapeno.Controls
             protected set;
         }
 
-        private ControlConfigurator _controlConfigurator;
-
         /// <summary>
         /// This method will create a control map from the locators specified in the control map dictionary with respect to the current browser window
         /// </summary>
@@ -45,7 +43,7 @@ namespace Tossd.Jalapeno.Controls
             CurrentBrowserWindow = currentBrowserWindow;
 
             //Instantiate the a new object of the control configurator with the current browser window
-            _controlConfigurator = new ControlConfigurator(currentBrowserWindow);
+            ControlConfigurator.BrowserWindow = currentBrowserWindow;
 
             return PopulateControlMap(controlMapDictionary);
         }
@@ -63,7 +61,7 @@ namespace Tossd.Jalapeno.Controls
             //Populate the control map
             foreach (string key in controlMapDictionary.Keys)
             {
-                controlMap.Add(key, _controlConfigurator.BuildControl(controlMapDictionary[key], new Control { UITestControl = CurrentBrowserWindow }));
+                controlMap.Add(key, ControlConfigurator.BuildControl(controlMapDictionary[key], new Control { UITestControl = CurrentBrowserWindow }));
             }
 
             //Return a control map object

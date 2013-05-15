@@ -8,18 +8,9 @@ using Tossd.Jalapeno.Model;
 
 namespace Tossd.Jalapeno.Controls
 {
-    public class ControlConfigurator
+    public static class ControlConfigurator
     {
-        /// <summary>
-        /// Constructor for the control configurator class with the current browser window
-        /// </summary>
-        /// <param name="browserWindow">The current browser window within which the controls will be located</param>
-        public ControlConfigurator(BrowserWindow browserWindow)
-        {
-            BrowserWindow = browserWindow;
-        }
-
-        public BrowserWindow BrowserWindow { get; set; }
+        public static BrowserWindow BrowserWindow { get; set; }
 
         /// <summary>
         /// Parses the locator info to translate it into a control object
@@ -27,7 +18,7 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="locator">The actual locator used to locate the control</param>
         /// <param name="parentContext">The parent control of the control to be created</param>
         /// <returns>The parsed control with respec to the locator info that was passed</returns>
-        public virtual Control BuildControl(string locator, Control parentContext)
+        public static Control BuildControl(string locator, Control parentContext)
         {
             var controlType = GetControlType(locator.Substring(0, locator.IndexOf("//")));
             var propertyString = GetProperties(locator.Substring(locator.IndexOf("//") + 2));
@@ -46,7 +37,7 @@ namespace Tossd.Jalapeno.Controls
         /// </summary>
         /// <param name="controlType"></param>
         /// <returns>The type of the control that matches the control type specified in the locator</returns>
-        protected virtual Type GetControlType(string controlType)
+        private static Type GetControlType(string controlType)
         {
             controlType = controlType.Replace("#", "");
 
@@ -117,7 +108,7 @@ namespace Tossd.Jalapeno.Controls
         /// </summary>
         /// <param name="propertyString">The properties of the locator string parsed from the control dictionary</param>
         /// <returns>A list of the properties for the control</returns>
-        protected virtual List<string> GetProperties(string propertyString)
+        private static List<string> GetProperties(string propertyString)
         {
             return Regex.Split(propertyString, "//").ToList();
         }
@@ -128,7 +119,7 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="tags">A list of tags/properties that are used to locate a control</param>
         /// <param name="parentContext">A parent control under which the control needs to be located</param>
         /// <returns>The parent control parsed from the tags</returns>
-        protected virtual Control GetParentControl(List<string> tags, Control parentContext)
+        private static Control GetParentControl(List<string> tags, Control parentContext)
         {
             if (tags.Count < 2)
             {
@@ -154,7 +145,7 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="htmlControl">The control for which the search properties need to be set</param>
         /// <param name="propertyString">The properties which will help locate the conrol during runtime</param>
         /// <returns>A parsed control with populated search properties</returns>
-        protected virtual Control SetProperties(HtmlControl htmlControl, string propertyString)
+        private static Control SetProperties(HtmlControl htmlControl, string propertyString)
         {
             var tempHtmlControl = htmlControl;
 

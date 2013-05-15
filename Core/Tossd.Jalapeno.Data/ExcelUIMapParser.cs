@@ -19,11 +19,19 @@ namespace Tossd.Jalapeno.Data
         protected string ColumnLocatorName = "LocatorName";
         protected string ColumnLocatorValue = "LocatorValue";
 
+        /// <summary>
+        /// Constructor to build the IDataSourceParser interface implementation
+        /// </summary>
         public ExcelUIMapParser()
         {
             _dataSourceParser = ObjectFactory.Build<IDataSourceParser>("Excel");
         }
 
+        /// <summary>
+        /// Parses a file containing the UI Map locator information and returns a string dictionary of the same
+        /// </summary>
+        /// <param name="fileName">The fully qualified path of the file containing the UI Map</param>
+        /// <returns>A String Dictionary of the locator information</returns>
         public virtual StringDictionary ParseUIMap(string fileName)
         {
             var uiMap = new StringDictionary();
