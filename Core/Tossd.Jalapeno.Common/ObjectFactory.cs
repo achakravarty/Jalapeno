@@ -27,7 +27,7 @@ namespace Tossd.Jalapeno.Common
                 {
                     throw new ArgumentNullException("interfaceType");
                 }
-                var key = ConstructKey(interfaceType., genericTypeName);
+                var key = ConstructKey(interfaceType.Name, genericTypeName);
                 var typeName = ConfigurationManager.AppSettings[key];
                 if (string.IsNullOrWhiteSpace(typeName))
                 {
