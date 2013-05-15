@@ -43,6 +43,12 @@
     <Compile Include="ControlActionException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tossd.Jalapeno.Model\Tossd.Jalapeno.Model.csproj">
+      <Project>{FD007150-E50C-4123-8DB0-7DC68FDF5282}</Project>
+      <Name>Tossd.Jalapeno.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -55,6 +55,10 @@
       <Project>{CCC782C0-54AC-44F5-B4CD-68284EA50B16}</Project>
       <Name>Tossd.Jalapeno.Controls.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tossd.Jalapeno.Exceptions\Tossd.Jalapeno.Exceptions.csproj">
+      <Project>{A5363F65-3F6B-4549-B56F-C102597997BF}</Project>
+      <Name>Tossd.Jalapeno.Exceptions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tossd.Jalapeno.Model\Tossd.Jalapeno.Model.csproj">
       <Project>{FD007150-E50C-4123-8DB0-7DC68FDF5282}</Project>
       <Name>Tossd.Jalapeno.Model</Name>

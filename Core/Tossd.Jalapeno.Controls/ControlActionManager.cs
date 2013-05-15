@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
+using Tossd.Jalapeno.Exceptions;
 using Tossd.Jalapeno.Model;
 
 namespace Tossd.Jalapeno.Controls
@@ -28,7 +29,7 @@ namespace Tossd.Jalapeno.Controls
             }
             catch (Exception ex)
             {
-                throw new Exception("", ex);
+                throw new ControlActionException(ex, "Click", control.PropertyInfo.LocatorName);
             }
         }
 
@@ -38,8 +39,15 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="control">Control to hover over.</param>
         public static void Hover(this Control control)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            Mouse.Hover(control.HtmlControl);
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                Mouse.Hover(control.HtmlControl);
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "Hover", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -49,9 +57,16 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="data">Data to type</param>
         public static void Type(this Control control, string data)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            var htmlEdit = (HtmlEdit)control.UITestControl;
-            htmlEdit.Text = data;
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                var htmlEdit = (HtmlEdit)control.UITestControl;
+                htmlEdit.Text = data;
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "Type", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -61,9 +76,16 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="data">Data to send</param>
         public static void SendKeys(this Control control, string data)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            control.UITestControl.SetFocus();
-            Keyboard.SendKeys(data);
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                control.UITestControl.SetFocus();
+                Keyboard.SendKeys(data);
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "SendKeys", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -73,11 +95,18 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="data">Data to select</param>
         public static void SelectCheckBox(this Control control, bool data)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            var checkBox = (HtmlCheckBox)control.UITestControl;
-            if (checkBox.Enabled)
+            try
             {
-                checkBox.Checked = data;
+                control = ResolveControlByIndexAndVisibility(control);
+                var checkBox = (HtmlCheckBox)control.UITestControl;
+                if (checkBox.Enabled)
+                {
+                    checkBox.Checked = data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "SelectCheckBox", control.PropertyInfo.LocatorName);
             }
         }
 
@@ -87,9 +116,16 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="control">Control to select</param>
         public static void SelectRadioButton(this Control control)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            var radioButton = (HtmlRadioButton)control.UITestControl;
-            radioButton.Selected = true;
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                var radioButton = (HtmlRadioButton)control.UITestControl;
+                radioButton.Selected = true;
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "SelectRadioButton", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -99,12 +135,18 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="data">Data to select</param>
         public static void SelectComboBoxByText(this Control control, String data)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            HtmlComboBox comboBox = control.UITestControl as HtmlComboBox;
-            if (comboBox.SelectedItem == data)
-                return;
-
-            comboBox.SelectedItem = data;
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                var comboBox = (HtmlComboBox)control.UITestControl;
+                if (comboBox.SelectedItem != data)
+                    return;
+                comboBox.SelectedItem = data;
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "SelectComboBoxByText", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -114,9 +156,16 @@ namespace Tossd.Jalapeno.Controls
         /// <param name="data">Comma seperated items to select</param>
         public static void SelectList(this Control control, String data)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            var htmlList = (HtmlList)control.UITestControl;
-            htmlList.SelectedItemsAsString = data;
+            try
+            {
+                control = ResolveControlByIndexAndVisibility(control);
+                var htmlList = (HtmlList)control.UITestControl;
+                htmlList.SelectedItemsAsString = data;
+            }
+            catch (Exception ex)
+            {
+                throw new ControlActionException(ex, "SelectList", control.PropertyInfo.LocatorName);
+            }
         }
 
         /// <summary>
@@ -153,7 +202,7 @@ namespace Tossd.Jalapeno.Controls
             return control != null;
         }
 
-        public static bool WaitForControlNotExist(this Control control, Nullable<long> waitTime)
+        public static bool WaitForControlNotExist(this Control control, long? waitTime)
         {
             Playback.Wait(1000);
             waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
@@ -174,7 +223,7 @@ namespace Tossd.Jalapeno.Controls
             return isVisible == false;
         }
 
-        public static bool WaitForControlExist(this Control control, Nullable<long> waitTime)
+        public static bool WaitForControlExist(this Control control, long? waitTime)
         {
             Playback.Wait(1000);
             waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
