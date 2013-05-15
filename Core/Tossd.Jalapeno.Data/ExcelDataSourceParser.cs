@@ -14,16 +14,8 @@ namespace Tossd.Jalapeno.Data
         /// <returns>A workbook object of the excel file</returns>
         public object Parse(string dataSource)
         {
-            try
-            {
-                var provider = new ExcelProvider(dataSource);
-                return provider.GetWorkbook();
-            }
-            catch (Exception ex)
-            {
-                ex.Data.Add("GetWorkBook Exception", "Failed to load excel workbook - " + dataSource);
-                throw;
-            }
+            var provider = new ExcelProvider(dataSource);
+            return provider.GetWorkbook();
         }
 
         /// <summary>
@@ -33,7 +25,7 @@ namespace Tossd.Jalapeno.Data
         /// <returns>An object of type T as specified</returns>
         public T ParseExact<T>(string dataSource) where T : class, new()
         {
-            return Parse(dataSource) as T;
+            throw new NotImplementedException("To be implemented later");
         }
     }
 }

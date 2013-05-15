@@ -147,6 +147,7 @@ namespace Tossd.Jalapeno.Controls
         /// <returns>A parsed control with populated search properties</returns>
         private static Control SetProperties(HtmlControl htmlControl, string propertyString)
         {
+
             var tempHtmlControl = htmlControl;
 
             var control = new Control();
@@ -198,7 +199,7 @@ namespace Tossd.Jalapeno.Controls
             {
                 tempHtmlControl.SearchProperties.Add("TagName", propertyString, PropertyExpressionOperator.EqualTo);
             }
-            
+
             control.UITestControl = tempHtmlControl;
             return control;
         }

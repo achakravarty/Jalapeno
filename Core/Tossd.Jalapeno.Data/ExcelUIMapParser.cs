@@ -35,7 +35,12 @@ namespace Tossd.Jalapeno.Data
         public virtual StringDictionary ParseUIMap(string fileName)
         {
             var uiMap = new StringDictionary();
-            var workBook = (Workbook)_dataSourceParser.Parse(fileName);
+            var parsedWorkbook = _dataSourceParser.Parse(fileName);
+            if(parsedWorkbook == null)
+            {
+                throw new Exception();
+            }
+            var workBook = (Workbook)parsedWorkbook;
             foreach (Row row in workBook.Worksheets[SheetUIMap].Rows)
             {
                 var key = ConstructKey(row);
