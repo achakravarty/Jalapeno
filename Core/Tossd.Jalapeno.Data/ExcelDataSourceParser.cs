@@ -25,5 +25,15 @@ namespace Tossd.Jalapeno.Data
                 throw;
             }
         }
+
+        /// <summary>
+        /// Parses the external excel file into the type of object specified
+        /// </summary>
+        /// <param name="dataSource">The fully qualified path of the excel file</param>
+        /// <returns>An object of type T as specified</returns>
+        public T ParseExact<T>(string dataSource) where T : class, new()
+        {
+            return Parse(dataSource) as T;
+        }
     }
 }
