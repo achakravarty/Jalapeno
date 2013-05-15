@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. References", "1. References", "{6AA6C2CC-056F-4EA0-AF38-9958D613BB64}"
+	ProjectSection(SolutionItems) = preProject
+		References\ExcelParser.dll = References\ExcelParser.dll
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Core", "2. Core", "{DD15A078-E574-416F-A315-08FE9DF1F82B}"
 EndProject
