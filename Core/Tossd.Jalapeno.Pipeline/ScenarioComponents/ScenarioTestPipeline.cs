@@ -23,7 +23,9 @@ namespace Tossd.Jalapeno.Pipeline.Components
             try
             {
                 if (TestComponentManager.ComponentTypes == null || TestComponentManager.ComponentTypes.Count <= 0)
+                {
                     TestComponentManager.LoadComponentTypes();
+                }
 
                 foreach (var component in components)
                 {
@@ -54,16 +56,15 @@ namespace Tossd.Jalapeno.Pipeline.Components
 
         public override void Execute(Scenario testScenario)
         {
-            Initialize(testScenario.TestComponents);       
-            
             if (_pipelineComponents != null && _pipelineComponents.Count > 0)
             {
-                _pipelineComponents.ForEach(x => 
+                _pipelineComponents.ForEach(x =>
                     {
                         ((ScenarioTestComponent)x).TestMode = TestMode;
                         ((ScenarioTestComponent)x).Execute(testScenario);
                     });
             }
+            else throw new Exception("Pipeline is empty. No components configured for the pipeline");
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Tossd.Jalapeno.Data
             var parsedWorkbook = DataSourceParser.Parse(fileName);
             if (parsedWorkbook == null)
             {
-                throw new Exception();
+                throw new Exception("The parsed workbook is empty");
             }
             var workBook = (Workbook)parsedWorkbook;
             foreach (Row row in workBook.Worksheets[SheetUIMap].Rows)

@@ -25,7 +25,7 @@ namespace Tossd.Jalapeno.Common
             {
                 if(interfaceType == null)
                 {
-                    throw new ArgumentNullException("interfaceType");
+                    throw new ArgumentNullException("interfaceType", "Interface type cannot be null");
                 }
                 var key = ConstructKey(interfaceType.Name, genericTypeName);
                 var typeName = ConfigurationManager.AppSettings[key];

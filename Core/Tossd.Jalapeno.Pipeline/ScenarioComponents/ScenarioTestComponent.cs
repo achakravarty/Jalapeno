@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Tossd.Jalapeno.Pipeline.Model;
 
-
 namespace Tossd.Jalapeno.Pipeline.Components
 {
     public abstract class ScenarioTestComponent : TestComponent<Scenario>

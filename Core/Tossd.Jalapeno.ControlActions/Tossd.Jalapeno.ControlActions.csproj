@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{753246AE-09A1-49FF-B13C-25CA826C6CE4}</ProjectGuid>
+    <ProjectGuid>{DD6FC606-BDAB-4CD9-92A5-40787EF11A5B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tossd.Jalapeno.Core</RootNamespace>
-    <AssemblyName>Tossd.Jalapeno.Core</AssemblyName>
+    <RootNamespace>Tossd.Jalapeno.ControlActions</RootNamespace>
+    <AssemblyName>Tossd.Jalapeno.ControlActions</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -42,36 +42,20 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InterfaceImplementationInstantiator.cs" />
+    <Compile Include="ControlActionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tossd.Jalapeno.Common\Tossd.Jalapeno.Common.csproj">
-      <Project>{318ad1e0-9841-49f7-9d07-0e76a7ece642}</Project>
-      <Name>Tossd.Jalapeno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tossd.Jalapeno.ControlActions\Tossd.Jalapeno.ControlActions.csproj">
-      <Project>{dd6fc606-bdab-4cd9-92a5-40787ef11a5b}</Project>
-      <Name>Tossd.Jalapeno.ControlActions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tossd.Jalapeno.Controls.Interfaces\Tossd.Jalapeno.Controls.Interfaces.csproj">
-      <Project>{ccc782c0-54ac-44f5-b4cd-68284ea50b16}</Project>
-      <Name>Tossd.Jalapeno.Controls.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tossd.Jalapeno.Controls\Tossd.Jalapeno.Controls.csproj">
       <Project>{f9be473f-29c6-497f-af09-e30751e63662}</Project>
       <Name>Tossd.Jalapeno.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tossd.Jalapeno.Data.Interfaces\Tossd.Jalapeno.Data.Interfaces.csproj">
-      <Project>{f4ba44db-08cd-4ba9-ba79-701223f0766c}</Project>
-      <Name>Tossd.Jalapeno.Data.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tossd.Jalapeno.Data\Tossd.Jalapeno.Data.csproj">
-      <Project>{41bc79f2-faf5-490f-b9f4-c0b6fd969f68}</Project>
-      <Name>Tossd.Jalapeno.Data</Name>
+    <ProjectReference Include="..\Tossd.Jalapeno.Exceptions\Tossd.Jalapeno.Exceptions.csproj">
+      <Project>{a5363f65-3f6b-4549-b56f-c102597997bf}</Project>
+      <Name>Tossd.Jalapeno.Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tossd.Jalapeno.Model\Tossd.Jalapeno.Model.csproj">
       <Project>{fd007150-e50c-4123-8db0-7dc68fdf5282}</Project>

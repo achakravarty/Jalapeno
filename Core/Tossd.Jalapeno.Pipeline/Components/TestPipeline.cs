@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Tossd.Jalapeno.Pipeline.Components
@@ -8,11 +9,18 @@ namespace Tossd.Jalapeno.Pipeline.Components
 
         public virtual bool Initialize(List<string> components)
         {
-            if (TestComponentManager.ComponentTypes == null || TestComponentManager.ComponentTypes.Count <= 0)
+            try
             {
-                TestComponentManager.LoadComponentTypes();
+                if (TestComponentManager.ComponentTypes == null || TestComponentManager.ComponentTypes.Count <= 0)
+                {
+                    TestComponentManager.LoadComponentTypes();
+                }
+                return true;
             }
-            return true;
+            catch (Exception ex)
+            {
+                throw new Exception("Pipeline Initialization failed", ex);
+            }
         }
 
         public abstract void Execute(T testScenario);

@@ -7,10 +7,11 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using Tossd.Jalapeno.Exceptions;
 using Tossd.Jalapeno.Model;
+using Tossd.Jalapeno.Controls;
 
-namespace Tossd.Jalapeno.Controls
+namespace Tossd.Jalapeno.ControlActions
 {
-    public static class ActionManager
+    public static class ControlActionManager
     {
         private const int DefaultIndex = 1;
 
@@ -245,6 +246,11 @@ namespace Tossd.Jalapeno.Controls
         }
 
         #endregion
+
+        public static void LaunchBrowser(this BrowserWindow browserWindow, string launchUrl)
+        {
+            browserWindow = BrowserWindow.Launch(launchUrl);
+        }
 
         #region Control Resolve Helpers
 
