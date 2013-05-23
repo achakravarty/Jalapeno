@@ -10,7 +10,7 @@ using Tossd.Jalapeno.Model;
 
 namespace Tossd.Jalapeno.Controls
 {
-    public static partial class ActionManager
+    public static class ActionManager
     {
         private const int DefaultIndex = 1;
 

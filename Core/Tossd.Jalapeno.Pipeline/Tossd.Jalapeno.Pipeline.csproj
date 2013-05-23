@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{41BC79F2-FAF5-490F-B9F4-C0B6FD969F68}</ProjectGuid>
+    <ProjectGuid>{1326A773-3909-443C-B33B-D915A7A04A10}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tossd.Jalapeno.Data</RootNamespace>
-    <AssemblyName>Tossd.Jalapeno.Data</AssemblyName>
+    <RootNamespace>Tossd.Jalapeno.Pipeline</RootNamespace>
+    <AssemblyName>Tossd.Jalapeno.Pipeline</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,11 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExcelParser">
-      <HintPath>..\References\ExcelParser.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,20 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelDataSourceParser.cs" />
-    <Compile Include="ExcelUIMapParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UIMapParser.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Tossd.Jalapeno.Common\Tossd.Jalapeno.Common.csproj">
-      <Project>{318AD1E0-9841-49F7-9D07-0E76A7ECE642}</Project>
-      <Name>Tossd.Jalapeno.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Tossd.Jalapeno.Data.Interfaces\Tossd.Jalapeno.Data.Interfaces.csproj">
-      <Project>{F4BA44DB-08CD-4BA9-BA79-701223F0766C}</Project>
-      <Name>Tossd.Jalapeno.Data.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
