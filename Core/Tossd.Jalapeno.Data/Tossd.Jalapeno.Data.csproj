@@ -44,8 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelDataSourceParser.cs" />
-    <Compile Include="ExcelUIMapParser.cs" />
+    <Compile Include="Excel\ExcelDataSourceParser.cs" />
+    <Compile Include="Excel\ExcelUIMapParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIMapParser.cs" />
   </ItemGroup>

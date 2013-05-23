@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UITesting;
 using Tossd.Jalapeno.Model;
+using Microsoft.VisualStudio.TestTools.UITesting;
 
 namespace Tossd.Jalapeno.Controls.Interfaces
 {

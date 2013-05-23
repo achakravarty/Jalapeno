@@ -40,7 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\TestComponentAttribute.cs" />
+    <Compile Include="Components\ITestPipeline.cs" />
+    <Compile Include="Model\Scenario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\ITestComponent.cs" />
+    <Compile Include="Components\TestComponent.cs" />
+    <Compile Include="ScenarioComponents\ScenarioTestComponent.cs" />
+    <Compile Include="ScenarioComponents\ScenarioTestPipeline.cs" />
+    <Compile Include="Components\TestComponentManager.cs" />
+    <Compile Include="Components\TestPipeline.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
