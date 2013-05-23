@@ -44,11 +44,23 @@ namespace Tossd.Jalapeno.Core
 
         public void Init(string launchUrl)
         {
-            LaunchBrowser(launchUrl);
+            if (BrowserWindow == null)
+            {
+                LaunchBrowser(launchUrl);
+            }
             PopulateControlMap();
             //ParseResourceMessages();
             TestData.Init();
             GenerateDirectoryPathForCapturedScreenImages();
+        }
+
+        public void LaunchBrowser(string launchUrl)
+        {
+            if (string.IsNullOrEmpty(launchUrl))
+            {
+                launchUrl = ConfigurationManager.AppSettings["ApplicationUrl"];
+            }
+            BrowserWindow.LaunchBrowser(launchUrl);
         }
 
         private static void GenerateDirectoryPathForCapturedScreenImages()
@@ -127,15 +139,6 @@ namespace Tossd.Jalapeno.Core
         #endregion
 
         #region Helpers
-
-        private static void LaunchBrowser(string launchUrl)
-        {
-            if (string.IsNullOrEmpty(launchUrl))
-            {
-                launchUrl = ConfigurationManager.AppSettings["ApplicationUrl"];
-            }
-            BrowserWindow.LaunchBrowser(launchUrl);
-        }
 
         //private static void ParseResourceMessages()
         //{

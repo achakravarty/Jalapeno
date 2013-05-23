@@ -13,10 +13,6 @@ namespace Tossd.Jalapeno.ControlActions
 {
     public static class ControlActionManager
     {
-        private const int DefaultIndex = 1;
-
-        #region Control Actions
-
         /// <summary>
         /// Performs Mouse.Click on the specified HTML control
         /// </summary>
@@ -25,7 +21,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 Mouse.Click(control.UITestControl);
             }
             catch (Exception ex)
@@ -42,7 +38,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 Mouse.Hover(control.HtmlControl);
             }
             catch (Exception ex)
@@ -60,7 +56,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 var htmlEdit = (HtmlEdit)control.UITestControl;
                 htmlEdit.Text = data;
             }
@@ -79,7 +75,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 control.UITestControl.SetFocus();
                 Keyboard.SendKeys(data);
             }
@@ -98,7 +94,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 var checkBox = (HtmlCheckBox)control.UITestControl;
                 if (checkBox.Enabled)
                 {
@@ -119,7 +115,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 var radioButton = (HtmlRadioButton)control.UITestControl;
                 radioButton.Selected = true;
             }
@@ -138,7 +134,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 var comboBox = (HtmlComboBox)control.UITestControl;
                 if (comboBox.SelectedItem != data)
                     return;
@@ -159,7 +155,7 @@ namespace Tossd.Jalapeno.ControlActions
         {
             try
             {
-                control = ResolveControlByIndexAndVisibility(control);
+                control = control.ResolveControlByIndexAndVisibility();
                 var htmlList = (HtmlList)control.UITestControl;
                 htmlList.SelectedItemsAsString = data;
             }
@@ -169,90 +165,15 @@ namespace Tossd.Jalapeno.ControlActions
             }
         }
 
-        /// <summary>
-        /// Returns the inner text of the specified control
-        /// </summary>
-        /// <param name="control">Control to use</param>
-        /// <returns></returns>
-        public static string GetInnerText(this Control control)
+        public static Control Reset(this Control control)
         {
-            control = ResolveControlByIndexAndVisibility(control);
-            return control.HtmlControl.InnerText;
+            return ControlConfigurator.BuildControl(control.PropertyInfo.LocatorName, null);
         }
+    }    
 
-        /// <summary>
-        /// Resturns the associated label of the specified HTMLCheckBox control
-        /// </summary>
-        /// <param name="control">Control to use</param>
-        /// <returns></returns>
-        public static string GetLabelForCheckBox(this Control control)
-        {
-            control = ResolveControlByIndexAndVisibility(control);
-            var htmlControl = (HtmlCheckBox)control.UITestControl;
-            return htmlControl.LabeledBy;
-        }
-
-        /// <summary>
-        /// Returns the control existence by checking both control presence in page and its visibility
-        /// </summary>
-        /// <param name="control">Control to check</param>
-        /// <returns></returns>
-        public static bool IsExist(this Control control)
-        {
-            control = ResolveControlByIndexAndVisibility(control);
-            return control != null;
-        }
-
-        public static bool WaitForControlNotExist(this Control control, long? waitTime)
-        {
-            Playback.Wait(1000);
-            waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
-
-            bool isVisible = true;
-            Stopwatch sw = Stopwatch.StartNew();
-            sw.Start();
-            while (sw.ElapsedMilliseconds < waitTime)
-            {
-                control = control.Reset();
-                if (IsExist(control) == false)
-                {
-                    isVisible = false;
-                    break;
-                }
-            }
-            sw.Stop();
-            return isVisible == false;
-        }
-
-        public static bool WaitForControlExist(this Control control, long? waitTime)
-        {
-            Playback.Wait(1000);
-            waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
-
-            bool isVisible = false;
-            Stopwatch sw = Stopwatch.StartNew();
-            sw.Start();
-            while (sw.ElapsedMilliseconds < waitTime)
-            {
-                control = control.Reset();
-                if (IsExist(control))
-                {
-                    isVisible = true;
-                    break;
-                }
-            }
-            sw.Stop();
-            return isVisible;
-        }
-
-        #endregion
-
-        public static void LaunchBrowser(this BrowserWindow browserWindow, string launchUrl)
-        {
-            browserWindow = BrowserWindow.Launch(launchUrl);
-        }
-
-        #region Control Resolve Helpers
+    public static class ControlResolutionManager
+    {
+        private const int DefaultIndex = 1;
 
         /// <summary>
         /// Returns the count of the matching visible controls
@@ -331,36 +252,6 @@ namespace Tossd.Jalapeno.ControlActions
             }
         }
 
-        /// <summary>
-        /// Replaces the search placeholder '#KW' specified in UIMap with the given data
-        /// </summary>
-        /// <param name="control">Control to add search data</param>
-        /// <param name="value">Text to replace with</param>
-        /// <returns></returns>
-        public static Control AddSearchData(this Control control, string value)
-        {
-            return AddSearchData(control, "#KW", value);
-        }
-
-        /// <summary>
-        /// Replaces the given search placeholder with the given data
-        /// </summary>
-        /// <param name="control">Control to add search data</param>
-        /// <param name="replaceTo">Text to replace</param>
-        /// <param name="replaceWith">Text to replace with</param>
-        /// <returns></returns>
-        public static Control AddSearchData(this Control control, string replaceTo, string replaceWith)
-        {
-            if (!string.IsNullOrEmpty(replaceWith))
-            {
-                foreach (var property in control.UITestControl.SearchProperties.Where(property => property.PropertyValue.Contains(replaceTo)))
-                {
-                    property.PropertyValue = property.PropertyValue.Replace(replaceTo, replaceWith);
-                }
-            }
-            return control;
-        }
-
         public static Control ResolveControlByIndexAndVisibility(this Control control)
         {
             if (control.PropertyInfo == null || control.PropertyInfo.IsResolved)
@@ -405,17 +296,133 @@ namespace Tossd.Jalapeno.ControlActions
 
             return control;
         }
+    }
 
-        public static Control Reset(this Control control)
+    public static class BrowserActionManager
+    {
+        public static void LaunchBrowser(this BrowserWindow browserWindow, string launchUrl)
         {
-            return ControlConfigurator.BuildControl(control.PropertyInfo.LocatorName, null);
+            browserWindow = BrowserWindow.Launch(launchUrl);
+        }
+    }
+
+    public static class ControlExistManager
+    {
+        /// <summary>
+        /// Returns the control existence by checking both control presence in page and its visibility
+        /// </summary>
+        /// <param name="control">Control to check</param>
+        /// <returns></returns>
+        public static bool IsExist(this Control control)
+        {
+            control = control.ResolveControlByIndexAndVisibility();
+            return control != null;
+        }
+
+        public static bool WaitForControlNotExist(this Control control, long? waitTime)
+        {
+            Playback.Wait(1000);
+            waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
+
+            bool isVisible = true;
+            Stopwatch sw = Stopwatch.StartNew();
+            sw.Start();
+            while (sw.ElapsedMilliseconds < waitTime)
+            {
+                control = control.Reset();
+                if (IsExist(control) == false)
+                {
+                    isVisible = false;
+                    break;
+                }
+            }
+            sw.Stop();
+            return isVisible == false;
+        }
+
+        public static bool WaitForControlExist(this Control control, long? waitTime)
+        {
+            Playback.Wait(1000);
+            waitTime = (waitTime == 0 || waitTime == null) ? Playback.PlaybackSettings.WaitForReadyTimeout : waitTime;
+
+            bool isVisible = false;
+            Stopwatch sw = Stopwatch.StartNew();
+            sw.Start();
+            while (sw.ElapsedMilliseconds < waitTime)
+            {
+                control = control.Reset();
+                if (IsExist(control))
+                {
+                    isVisible = true;
+                    break;
+                }
+            }
+            sw.Stop();
+            return isVisible;
+        }
+    }
+
+    public static class ControlSearchManager
+    {
+        /// <summary>
+        /// Replaces the search placeholder '#KW' specified in UIMap with the given data
+        /// </summary>
+        /// <param name="control">Control to add search data</param>
+        /// <param name="value">Text to replace with</param>
+        /// <returns></returns>
+        public static Control AddSearchData(this Control control, string value)
+        {
+            return AddSearchData(control, "#KW", value);
+        }
+
+        /// <summary>
+        /// Replaces the given search placeholder with the given data
+        /// </summary>
+        /// <param name="control">Control to add search data</param>
+        /// <param name="replaceTo">Text to replace</param>
+        /// <param name="replaceWith">Text to replace with</param>
+        /// <returns></returns>
+        public static Control AddSearchData(this Control control, string replaceTo, string replaceWith)
+        {
+            if (!string.IsNullOrEmpty(replaceWith))
+            {
+                foreach (var property in control.UITestControl.SearchProperties.Where(property => property.PropertyValue.Contains(replaceTo)))
+                {
+                    property.PropertyValue = property.PropertyValue.Replace(replaceTo, replaceWith);
+                }
+            }
+            return control;
         }
 
         public static Control SetParentContext(this Control childControl, Control resolvedParentControl)
         {
             return ControlConfigurator.BuildControl(childControl.PropertyInfo.LocatorName, resolvedParentControl);
         }
+    }
 
-        #endregion
+    public static class ControlDataManager
+    {
+        /// <summary>
+        /// Returns the inner text of the specified control
+        /// </summary>
+        /// <param name="control">Control to use</param>
+        /// <returns></returns>
+        public static string GetInnerText(this Control control)
+        {
+            control = control.ResolveControlByIndexAndVisibility();
+            return control.HtmlControl.InnerText;
+        }
+
+        /// <summary>
+        /// Resturns the associated label of the specified HTMLCheckBox control
+        /// </summary>
+        /// <param name="control">Control to use</param>
+        /// <returns></returns>
+        public static string GetLabelForCheckBox(this Control control)
+        {
+            control = control.ResolveControlByIndexAndVisibility();
+            var htmlControl = (HtmlCheckBox)control.UITestControl;
+            return htmlControl.LabeledBy;
+        }
     }
 }
