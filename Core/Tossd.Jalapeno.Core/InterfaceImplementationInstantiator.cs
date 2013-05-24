@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Tossd.Jalapeno.Controls.Interfaces;
 using Tossd.Jalapeno.Data.Interfaces;
 using Tossd.Jalapeno.Common;
 
@@ -21,6 +22,11 @@ namespace Tossd.Jalapeno.Core
         internal static IUIMapParser InstantiateUIMapParser()
         {
             return ObjectFactory.Build<IUIMapParser>();
+        }
+
+        internal static IControlMapper InstantiateControlMapper()
+        {
+            return ObjectFactory.Build<IControlMapper>();
         }
     }
 }
