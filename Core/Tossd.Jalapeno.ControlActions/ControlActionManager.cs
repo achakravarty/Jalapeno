@@ -127,7 +127,7 @@ namespace Tossd.Jalapeno.ControlActions
         /// </summary>
         /// <param name="control">Control to select</param>
         /// <param name="data">Data to select</param>
-        public static void SelectComboBoxByText(this Control control, String data)
+        public static void SelectComboBoxByText(this Control control, string data)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace Tossd.Jalapeno.ControlActions
         /// </summary>
         /// <param name="control">Control to select</param>
         /// <param name="data">Comma seperated items to select</param>
-        public static void SelectList(this Control control, String data)
+        public static void SelectList(this Control control, string data)
         {
             try
             {

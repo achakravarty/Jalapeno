@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Tossd.Jalapeno.Pipeline.Components;
 
-namespace Tossd.Jalapeno.Pipeline.Components
+namespace Tossd.Jalapeno.Pipeline.Core
 {
     public abstract class TestPipeline<T> : List<ITestComponent<T>>, ITestPipeline<T>
     {

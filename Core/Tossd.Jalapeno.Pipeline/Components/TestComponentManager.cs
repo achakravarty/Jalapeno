@@ -11,10 +11,9 @@ namespace Tossd.Jalapeno.Pipeline.Components
     {
         public static List<Type> ComponentTypes { get; set; }
 
-        private static List<Assembly> GetTestAssemblies()
+        private static IEnumerable<Assembly> GetTestAssemblies()
         {
             //var allAssemblies = Assembly.GetExecutingAssembly().GetReferencedAssemblies();
-            var assemblies = new List<Assembly>();
             string binPath = AppDomain.CurrentDomain.BaseDirectory;
             var loadedAssemblies = new List<string>();
             foreach (string dll in Directory.GetFiles(binPath, "*.dll"))
@@ -28,12 +27,7 @@ namespace Tossd.Jalapeno.Pipeline.Components
                 catch (BadImageFormatException ex)
                 { }
             }
-            //assemblies.AddRange(allAssemblies.Where(x => loadedAssemblies.Contains(x.FullName)));            
-            foreach (var assemblyName in loadedAssemblies)
-            {
-                assemblies.Add(Assembly.Load(assemblyName.Replace(".dll", string.Empty)));
-            }
-            return assemblies;
+            return loadedAssemblies.Select(assemblyName => Assembly.Load(assemblyName.Replace(".dll", string.Empty))).ToList();
         }
 
         public static void LoadComponentTypes()

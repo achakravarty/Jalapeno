@@ -15,9 +15,4 @@ namespace Tossd.Jalapeno.Pipeline.Model
             return copyTo;
         } 
     }
-
-    public enum TestMode
-    {
-        Smoke, Regression
-    };    
 }

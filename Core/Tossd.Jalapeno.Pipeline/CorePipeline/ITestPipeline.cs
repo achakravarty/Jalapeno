@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Tossd.Jalapeno.Pipeline.Components;
 
-namespace Tossd.Jalapeno.Pipeline.Components
+namespace Tossd.Jalapeno.Pipeline.Core
 {
     public interface ITestPipeline<T> : IEnumerable<ITestComponent<T>>
     {

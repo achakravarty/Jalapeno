@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Tossd.Jalapeno.Pipeline.Attributes;
+using Tossd.Jalapeno.Pipeline.Components;
 using Tossd.Jalapeno.Pipeline.Model;
 
-namespace Tossd.Jalapeno.Pipeline.Components
+namespace Tossd.Jalapeno.Pipeline.Core
 {
     public class ScenarioTestPipeline : TestPipeline<Scenario>
     {
